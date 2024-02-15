@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "RequestParamSevlet", urlPatterns = "/request-param")
+@WebServlet(name = "requestParamSevlet", urlPatterns = "/request-param")
 public class RequestParamSevlet extends HttpServlet {
 
     @Override
@@ -36,5 +36,6 @@ public class RequestParamSevlet extends HttpServlet {
             System.out.println("username = " + name);
         }
 
+        response.getWriter().write("ok");
     }
 }
