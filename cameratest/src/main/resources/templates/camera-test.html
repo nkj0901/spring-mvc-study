@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--https://keepworking.tistory.com/28-->
+<video id="cameraview" width="720" height="480"></video>
+<!--https://blog.alan.imdeo.kr/17-->
+<button onclick="capture()"></button>
+
+</body>
+<script>
+    mainInit();
+
+    // Init camera
+    function camInit(stream) {
+        var cameraView = document.getElementById("cameraview");
+        cameraView.srcObject = stream;
+        cameraView.play();
+    }
+
+    function camInitFailed(error) {
+        console.log("get camera permission failed : ", error)
+    }
+
+    // Main init
+
+    function mainInit() {
+        // Check navigator media device available
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            // Navigator mediaDevices not supported
+            alert("Media Device not supported")
+            return;
+        }
+
+        navigator.mediaDevices.getUserMedia({
+            //어떤 것이 필요한지
+            video: true
+        }).then(camInit)
+            .catch(camInitFailed);
+
+        function capture() {
+            const video = document.getElementById("cameraview");
+            const cavas = document.create
+        }
+
+    }
+</script>
+</html>
