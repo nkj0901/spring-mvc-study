@@ -11,7 +11,13 @@
 <!--https://keepworking.tistory.com/28-->
 <video id="cameraview" width="720" height="480"></video>
 <!--https://blog.alan.imdeo.kr/17-->
-<button onclick="capture()"></button>
+<button onclick="capture()">캡쳐</button>
+
+<img id="captureimg"/>
+
+<form method="post" th:object="${person}">
+<!--TODO 사람 객체 만들어서 PERSON 속성에 저 사진 DATA 넣을 수 있는지 보기-->
+</form>
 
 </body>
 <script>
@@ -44,11 +50,17 @@
         }).then(camInit)
             .catch(camInitFailed);
 
-        function capture() {
-            const video = document.getElementById("cameraview");
-            const cavas = document.create
-        }
 
+    }
+    function capture() {
+        const video = document.getElementById("cameraview");
+        const canvas = document.createElement("canvas");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const img = canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
+        const dataURL = canvas.toDataURL("image/png");
+        const imgTag = document.getElementById("captureimg");
+        imgTag.src = dataURL;
     }
 </script>
 </html>
