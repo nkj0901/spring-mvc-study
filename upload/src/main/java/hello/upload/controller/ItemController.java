@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriUtils;
 
@@ -61,7 +60,6 @@ public class ItemController {
 
         redirectAttributes.addAttribute("itemId", item.getId());
 
-
         return "redirect:/items/{itemId}";
     }
 
@@ -105,13 +103,10 @@ public class ItemController {
         UrlResource resource = new UrlResource("file:" + fileStore.getFullPath(storeFileName));
         log.info("uploadFileName={}", uploadFileName);
 
-
         //브라우저마다 인코딩 방식이 조금씩 다름
         String encodedUploadFileName = UriUtils.encode(uploadFileName, StandardCharsets.UTF_8);
         String contentDisposition = "attachment; filename=\"" + encodedUploadFileName + "\"";
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
-                .body(resource);
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition).body(resource);
     }
 
 }
